@@ -1,0 +1,28 @@
+{
+  "name": "zest-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun run --hot ./src/index.ts",
+    "lint": "lint-staged"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.1",
+    "drizzle-orm": "^0.35.1",
+    "drizzle-zod": "^0.5.1",
+    "hono": "^4.6.5",
+    "http-status": "^1.7.4",
+    "pino": "^9.5.0",
+    "pino-pretty": "^11.3.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.3",
+    "@types/bun": "latest",
+    "drizzle-kit": "^0.26.2",
+    "lint-staged": "^15.2.10"
+  },
+  "lint-staged": {
+    "*.{ts,js}": "bunx biome check --apply-unsafe ./src",
+    "**/*": "bunx biome format ./src --write --files-ignore-unknown=true"
+  }
+}
