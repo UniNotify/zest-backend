@@ -1,4 +1,4 @@
-import { env } from "./env";
+import { env } from './env';
 
 export const config = {
 	server: { env: env.BUN_ENV, port: env.SERVER_PORT },
