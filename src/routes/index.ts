@@ -1,6 +1,6 @@
 import { route as userRoute } from './user.route';
 
-const base_path = 'v1';
+const base_path = 'api';
 
 export const defaultRoutes = [
 	{
