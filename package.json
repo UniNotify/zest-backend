@@ -6,14 +6,17 @@
     "lint": "lint-staged"
   },
   "dependencies": {
+    "@hono/sentry": "^1.2.0",
     "@hono/zod-validator": "^0.4.1",
     "@neondatabase/serverless": "^0.10.1",
     "drizzle-orm": "^0.35.1",
     "drizzle-zod": "^0.5.1",
     "hono": "^4.6.5",
+    "nanoid": "^5.0.7",
     "pino": "^9.5.0",
     "pino-pretty": "^11.3.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",

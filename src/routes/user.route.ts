@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { httpStatus } from '../utils/httpStatus';
+import { httpStatus } from '../utils/http-status';
 
 export const route = new Hono();
 
