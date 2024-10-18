@@ -13,5 +13,5 @@ export const logger = pino({
 });
 
 export const customLogger = (message: string, ...rest: string[]) => {
-	logger.trace(message, ...rest);
+	logger.info(message, ...rest);
 };

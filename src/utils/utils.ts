@@ -1,5 +1,3 @@
 import { nanoid } from 'nanoid';
 
-export const generateId = () => {
-	return nanoid();
-};
+export const generateId = (): string => nanoid();
