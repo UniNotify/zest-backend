@@ -6,13 +6,12 @@ import {
 	text,
 	timestamp,
 } from 'drizzle-orm/pg-core';
-import { generateId } from '../utils/utils';
 import { users } from './user.schema';
 
 export const visibilityEnum = pgEnum('visibility', ['public', 'private']);
 
 export const communities = pgTable('communities', {
-	id: uuid('id').default(generateId()).primaryKey(),
+	id: uuid('id').primaryKey().notNull(),
 	name: varchar('name', { length: 255 }).notNull(),
 	description: text('description').notNull(),
 	profileImage: varchar('profile_image', { length: 255 }),

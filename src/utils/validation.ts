@@ -21,12 +21,8 @@ export const validateEmail = (email: string): boolean => {
 };
 
 export const validateUsername = (username: string): boolean => {
-	return username.length >= 3 && username.length <= 20;
-};
-
-export const validatePhone = (phone: string): boolean => {
-	const phoneRegex = /^\+?[1-9]\d{1,14}$/;
-	return phoneRegex.test(phone);
+	const usernameRegex = /^[a-zA-Z0-9]+$/;
+	return usernameRegex.test(username);
 };
 
 export type ValidationResult = {
@@ -48,7 +44,7 @@ export const validate = {
 			isValid,
 			error: isValid
 				? undefined
-				: 'Username must be between 3 and 20 characters',
+				: 'Invalid username. Only alphanumeric characters are allowed',
 		};
 	},
 };

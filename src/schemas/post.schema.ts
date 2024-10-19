@@ -1,10 +1,9 @@
 import { pgTable, uuid, varchar, text, timestamp } from 'drizzle-orm/pg-core';
-import { generateId } from '../utils/utils';
 import { users } from './user.schema';
 import { communities } from './community.schema';
 
 export const posts = pgTable('posts', {
-	id: uuid('id').default(generateId()).primaryKey(),
+	id: uuid('id').primaryKey().notNull(),
 	communityId: uuid('community_id').references(() => communities.id),
 	createdBy: uuid('created_by')
 		.references(() => users.id)

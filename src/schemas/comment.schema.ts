@@ -1,10 +1,9 @@
 import { pgTable, uuid, text, timestamp } from 'drizzle-orm/pg-core';
-import { generateId } from '../utils/utils';
 import { users } from './user.schema';
 import { posts } from './post.schema';
 
 export const comments = pgTable('comments', {
-	id: uuid('id').default(generateId()).primaryKey(),
+	id: uuid('id').primaryKey().notNull(),
 	createdBy: uuid('created_by')
 		.references(() => users.id)
 		.notNull(),
