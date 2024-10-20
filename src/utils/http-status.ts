@@ -111,3 +111,5 @@ export const httpStatusMessages = Object.freeze({
 });
 
 export type HttpStatus = keyof typeof httpStatus;
+export type HttpStatusMessage =
+	(typeof httpStatusMessages)[keyof typeof httpStatusMessages];

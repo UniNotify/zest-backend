@@ -1,12 +1,12 @@
 import { Hono } from 'hono';
-import { logger } from 'hono/logger';
 import { cors } from 'hono/cors';
+import { logger } from 'hono/logger';
 import { sentry } from '@hono/sentry';
-import { defaultRoutes } from './routes';
-import { customLogger } from './utils/logger';
-import { errorHandler } from './middlewares/error';
 import ApiError from './utils/api-error';
+import { errorHandler } from './middlewares/error';
 import { httpStatus, httpStatusMessages } from './utils/http-status';
+import { customLogger } from './utils/logger';
+import { routes } from './routes';
 
 const app = new Hono();
 
@@ -23,8 +23,8 @@ app.notFound(() => {
 
 app.onError(errorHandler);
 
-for (const route of defaultRoutes) {
-	app.route(`${route.path}`, route.route);
+for (const route of routes) {
+	app.route(route.path, route.route);
 }
 
 export default app;
