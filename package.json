@@ -1,6 +1,11 @@
 {
-  "name": "zest-backend",
   "version": "1.0.0",
+  "name": "zest-backend",
+  "description": "A backend for a social media app with features similar to Reddit, Instagram, Twitter, and more.",
+  "main": "src/index.js",
+  "author": {
+    "name": "xarcgit"
+  },
   "scripts": {
     "dev": "bun run --hot ./src/index.ts",
     "db:generate": "bun drizzle-kit generate",
