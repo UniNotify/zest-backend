@@ -18,10 +18,6 @@ routes.post('/refresh-token', async c => {
 	return c.json({ message: 'Token refreshed', accessToken: newAccessToken });
 });
 
-routes.post('/forgot-password', async c => {
-	return c.json({ message: 'Forgot password email sent' });
-});
-
 routes.post('/reset-password', async c => {
 	const { email, password } = await c.req.json();
 	return c.json({ message: 'Password reset successful' });

@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  zest-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zest-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://user:password@host:port/database
+      - SERVER_PORT=3000
+      - BUN_ENV=production
+      - LOG_LEVEL=info
+      - LOG_USE_COLORS=true
+    volumes:
+      - .:/app
+    networks:
+      - zest-network
+
+networks:
+  zest-network:
+    driver: bridge
