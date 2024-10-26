@@ -14,6 +14,8 @@ app.use('*', logger(customLogger));
 app.use('*', sentry());
 app.use('*', cors());
 
+const apiRoute = app.route('/', routes);
+
 app.notFound(() => {
 	throw new ApiError(
 		httpStatus.NOT_FOUND,
@@ -23,8 +25,5 @@ app.notFound(() => {
 
 app.onError(errorHandler);
 
-for (const route of routes) {
-	app.route(route.path, route.route);
-}
-
 export default app;
+export type AppType = typeof apiRoute;
