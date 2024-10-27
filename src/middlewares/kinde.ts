@@ -7,7 +7,6 @@ import {
 import type { Context } from 'hono';
 import { getCookie, setCookie, deleteCookie } from 'hono/cookie';
 import { createMiddleware } from 'hono/factory';
-import { z } from 'zod';
 import { config } from '../configs';
 
 // Client for authorization code flow

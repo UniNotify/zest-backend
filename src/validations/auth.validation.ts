@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { validate } from '../utils/validation';
 
 export const loginValidationSchema = z
 	.object({
@@ -16,30 +15,15 @@ export type LoginValidationType = z.infer<typeof loginValidationSchema>;
 
 export const signupValidationSchema = z.object({
 	fullName: z.string().min(1, 'Full name is required'),
-	username: z
-		.string()
-		.min(1, 'Username is required')
-		.refine(val => validate.username(val).isValid, {
-			message: 'Username must be between 3 and 20 characters',
-		}),
-	email: z
-		.string()
-		.min(1, 'Email is required')
-		.refine(val => validate.email(val).isValid, {
-			message: 'Invalid email address',
-		}),
+	username: z.string().min(1, 'Username is required'),
+	email: z.string().min(1, 'Email is required'),
 	password: z.string().min(5, 'Password must be at least 5 characters long'),
 });
 
 export type SignupValidationType = z.infer<typeof signupValidationSchema>;
 
 export const ForgotPasswordValidationSchema = z.object({
-	email: z
-		.string()
-		.min(1, 'Email is required')
-		.refine(val => validate.email(val).isValid, {
-			message: 'Invalid email address',
-		}),
+	email: z.string().min(1, 'Email is required'),
 });
 
 export type ForgotPasswordValidationType = z.infer<

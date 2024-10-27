@@ -30,25 +30,6 @@ export type ValidationResult = {
 	error?: string;
 };
 
-export const validate = {
-	email: (email: string): ValidationResult => {
-		const isValid = validateEmail(email);
-		return {
-			isValid,
-			error: isValid ? undefined : 'Invalid email address',
-		};
-	},
-	username: (username: string): ValidationResult => {
-		const isValid = validateUsername(username);
-		return {
-			isValid,
-			error: isValid
-				? undefined
-				: 'Invalid username. Only alphanumeric characters are allowed',
-		};
-	},
-};
-
 export const sanitizeInput = (input: string): string => {
 	return input.replace(/['";]/g, '').trim();
 };

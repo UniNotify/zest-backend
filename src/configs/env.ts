@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { config as dotenvConfig } from 'dotenv';
+import { config as loadEnv } from 'dotenv';
 
-dotenvConfig();
+loadEnv();
 
 enum LogLevel {
 	TRACE = 'trace',
@@ -13,11 +13,17 @@ enum LogLevel {
 }
 
 const envSchema = z.object({
-	BUN_ENV: z.boolean().default(true),
-	SERVER_PORT: z.number().default(3000),
-	DATABASE_URL: z.string(),
+	IS_PRODUCTION: z.preprocess(
+		val => val === 'true' || val === true,
+		z.boolean().default(true),
+	),
+	SERVER_PORT: z.preprocess(val => Number(val), z.number().default(3000)),
+	DATABASE_URL: z.string().url(),
 	LOG_LEVEL: z.nativeEnum(LogLevel).default(LogLevel.INFO),
-	LOG_USE_COLORS: z.boolean().default(true),
+	LOG_USE_COLORS: z.preprocess(
+		val => val === 'true' || val === true,
+		z.boolean().default(true),
+	),
 	KINDE_DOMAIN: z.string(),
 	KINDE_CLIENT_ID: z.string(),
 	KINDE_CLIENT_SECRET: z.string(),

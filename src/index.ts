@@ -3,7 +3,7 @@ import { config } from './configs';
 import { logger } from './utils/logger';
 
 Bun.serve({
-	development: config.server.env,
+	development: config.server.development,
 	port: config.server.port,
 	fetch: app.fetch,
 });
