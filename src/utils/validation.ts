@@ -15,21 +15,6 @@ export const handleApiError = (
 	}
 };
 
-export const validateEmail = (email: string): boolean => {
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	return emailRegex.test(email);
-};
-
-export const validateUsername = (username: string): boolean => {
-	const usernameRegex = /^[a-zA-Z0-9]+$/;
-	return usernameRegex.test(username);
-};
-
-export type ValidationResult = {
-	isValid: boolean;
-	error?: string;
-};
-
 export const sanitizeInput = (input: string): string => {
 	return input.replace(/['";]/g, '').trim();
 };
