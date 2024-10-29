@@ -11,7 +11,3 @@ export const logger = pino({
 		},
 	},
 });
-
-export const customLogger = (message: string, ...rest: string[]) => {
-	logger.info(message, ...rest);
-};

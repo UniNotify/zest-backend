@@ -1,25 +1,22 @@
-export const response = (
+import { httpStatusMessages } from './http-status';
+
+export const sendResponse = (
 	c,
-	message: string,
 	status: number,
-	data?: JSON | string,
+	message?: string,
+	data?: Record<string, any> | string,
 ) => {
 	interface Response {
-		path: string;
 		message: string;
+		data?: Record<string, any> | string;
 		timestamp: string;
-		data?: JSON | string;
 	}
 
 	const response: Response = {
-		path: c.req.originalUrl,
-		message: message,
+		message: message || httpStatusMessages[status] || 'Unknown status',
 		timestamp: new Date().toISOString(),
+		...(data && { data }), // Only add `data` if it's provided
 	};
 
-	if (data !== undefined) {
-		response.data = data;
-	}
-
-	c.json(response, status);
+	c.status(status).json(response);
 };

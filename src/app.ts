@@ -5,12 +5,15 @@ import { sentry } from '@hono/sentry';
 import ApiError from './utils/api-error';
 import { errorHandler } from './middlewares/error';
 import { httpStatus, httpStatusMessages } from './utils/http-status';
-import { customLogger } from './utils/logger';
+import { logger as customLogger } from './utils/logger';
 import { routes } from './routes';
 
 const app = new Hono();
 
-app.use('*', logger(customLogger));
+app.use(
+	'*',
+	logger((message, ...rest) => customLogger.info(message, ...rest)),
+);
 app.use('*', sentry());
 app.use('*', cors());
 
