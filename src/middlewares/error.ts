@@ -1,11 +1,13 @@
-import { getSentry } from '@hono/sentry';
+import { httpStatus, httpStatusMessages } from '@utils/http-status';
+
+import ApiError from '@utils/api-error';
 import type { ErrorHandler } from 'hono';
 import type { StatusCode } from 'hono/utils/http-status';
-import { httpStatus, httpStatusMessages } from '../utils/http-status';
 import type { Toucan } from 'toucan-js';
 import { ZodError } from 'zod';
-import ApiError from '../utils/api-error';
-import { generateZodErrorMessage } from '../utils/zod';
+import { config } from '@configs';
+import { generateZodErrorMessage } from '@utils/zod';
+import { getSentry } from '@hono/sentry';
 
 const genericJSONErrMsg = 'Unexpected end of JSON input';
 
@@ -40,7 +42,7 @@ export const errorConverter = (err: unknown, sentry: Toucan): ApiError => {
 };
 
 export const errorHandler: ErrorHandler = async (err, c) => {
-	const env = c.env.ENV || 'production';
+	const env = config.server.env;
 	const sentry = getSentry(c);
 	const error = errorConverter(err, sentry);
 	if (env === 'production' && !error.isOperational) {

@@ -7,17 +7,17 @@ import {
 import type { Context } from 'hono';
 import { getCookie, setCookie, deleteCookie } from 'hono/cookie';
 import { createMiddleware } from 'hono/factory';
-import { config } from '../configs';
+import { config } from '@/configs';
 
 // Client for authorization code flow
 export const kindeClient = createKindeServerClient(
 	GrantType.AUTHORIZATION_CODE,
 	{
-		authDomain: config.kinde.domain,
-		clientId: config.kinde.clientId,
-		clientSecret: config.kinde.clientSecret,
-		redirectURL: config.kinde.redirectUri,
-		logoutRedirectURL: config.kinde.logoutRedirectUri,
+		authDomain: config.kinde.auth.domain,
+		clientId: config.kinde.auth.client.id,
+		clientSecret: config.kinde.auth.client.secret,
+		redirectURL: config.kinde.redirects.uri,
+		logoutRedirectURL: config.kinde.redirects.logout.uri,
 	},
 );
 

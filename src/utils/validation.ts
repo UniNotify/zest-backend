@@ -1,5 +1,6 @@
-import type { Context } from 'hono';
 import { httpStatus, httpStatusMessages } from './http-status';
+
+import type { Context } from 'hono';
 
 export const handleApiError = (
 	result: {

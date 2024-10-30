@@ -1,10 +1,10 @@
 import { Hono } from 'hono';
-import userRoute from './user.route';
 import authRoute from './auth.route';
-import utilRoute from './util.route';
+import commentRoute from './comment.route';
 import communityRoute from './community.route';
 import postRoute from './post.route';
-import commentRoute from './comment.route';
+import userRoute from './user.route';
+import utilRoute from './util.route';
 
 export const routes = new Hono();
 

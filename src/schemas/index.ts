@@ -1,4 +1,4 @@
 export * from './user.schema';
-export * from './community.schema';
-export * from './post.schema';
-export * from './comment.schema';
+export * from './tribe.schema';
+export * from './thread.schema';
+export * from './nod.schema';

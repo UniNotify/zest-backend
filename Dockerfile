@@ -1,5 +1,5 @@
 # Start with a base image that has Node installed (for compatibility)
-FROM node:18-slim
+FROM node:23.1.0-slim
 
 # Install curl to download Bun
 RUN apt-get update && apt-get install -y curl
@@ -16,18 +16,14 @@ WORKDIR /app
 # Copy project files into the container
 COPY . .
 
+# Copy .env file into the container
+COPY .env .env
+
 # Install Bun dependencies
 RUN bun install
-
-# Set environment variables, which can be overridden in docker-compose.yml
-ENV DATABASE_URL=""
-ENV SERVER_PORT="3000"
-ENV BUN_ENV="production"
-ENV LOG_LEVEL="info"
-ENV LOG_USE_COLORS="false"
 
 # Expose the desired port
 EXPOSE 3000
 
-# Run the Bun server
-CMD ["bun", "start"]
+# Run the Bun server with dotenv
+CMD ["dotenv", "-e", ".env", "bun", "start"]

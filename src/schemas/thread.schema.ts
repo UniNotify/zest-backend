@@ -1,10 +1,11 @@
-import { pgTable, uuid, varchar, text, timestamp } from 'drizzle-orm/pg-core';
-import { users } from './user.schema';
-import { communities } from './community.schema';
+import { pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
 
-export const posts = pgTable('posts', {
+import { tribes } from './tribe.schema';
+import { users } from './user.schema';
+
+export const threads = pgTable('threads', {
 	id: uuid('id').primaryKey().notNull(),
-	communityId: uuid('community_id').references(() => communities.id),
+	tribeId: uuid('tribe_id').references(() => tribes.id),
 	createdBy: uuid('created_by')
 		.references(() => users.id)
 		.notNull(),
@@ -14,11 +15,11 @@ export const posts = pgTable('posts', {
 	updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
-export const postLikes = pgTable('post_likes', {
-	postId: uuid('post_id').references(() => posts.id),
+export const threadLikes = pgTable('thread_likes', {
+	threadId: uuid('thread_id').references(() => threads.id),
 	userId: uuid('user_id').references(() => users.id),
 	createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-export type Post = typeof posts.$inferSelect;
-export type NewPost = typeof posts.$inferInsert;
+export type Thread = typeof threads.$inferSelect;
+export type NewThread = typeof threads.$inferInsert;

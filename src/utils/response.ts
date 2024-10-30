@@ -1,8 +1,9 @@
-import { httpStatusMessages } from './http-status';
 import type { Context } from 'hono';
+import { httpStatusMessages } from './http-status';
 
 export const sendResponse = (
-	c: Context,
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	c: Context | any,
 	status: number,
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	data?: Record<string, any> | string,

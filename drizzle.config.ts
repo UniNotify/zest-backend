@@ -1,5 +1,5 @@
 import { defineConfig } from 'drizzle-kit';
-import { config } from './src/configs';
+import { config } from '@/configs';
 
 export default defineConfig({
 	out: './src/migrations',

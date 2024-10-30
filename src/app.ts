@@ -1,12 +1,13 @@
+import { httpStatus, httpStatusMessages } from '@utils/http-status';
+
+import ApiError from '@utils/api-error';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import { logger as customLogger } from '@utils/logger';
+import { errorHandler } from '@middlewares/error';
 import { logger } from 'hono/logger';
+import { routes } from '@routes';
 import { sentry } from '@hono/sentry';
-import ApiError from './utils/api-error';
-import { errorHandler } from './middlewares/error';
-import { httpStatus, httpStatusMessages } from './utils/http-status';
-import { logger as customLogger } from './utils/logger';
-import { routes } from './routes';
 
 const app = new Hono();
 

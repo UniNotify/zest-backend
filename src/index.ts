@@ -1,9 +1,9 @@
-import app from './app';
-import { config } from './configs';
-import { logger } from './utils/logger';
+import app from '@app';
+import { config } from '@configs';
+import { logger } from '@utils/logger';
 
 Bun.serve({
-	development: config.server.development,
+	development: config.server.env === 'development',
 	port: config.server.port,
 	fetch: app.fetch,
 });

@@ -1,40 +1,25 @@
+import { bio, password, url, username } from './custom.refine.validation';
+
 import { z } from 'zod';
 
-export const loginValidationSchema = z
-	.object({
-		username: z.string(),
-		email: z.string(),
-		password: z.string().min(1, 'Password is required'),
-	})
-	.refine(data => data.username || data.email, {
-		message: 'Either username or email is required',
-		path: ['username', 'email'],
-	});
-
-export type LoginValidationType = z.infer<typeof loginValidationSchema>;
-
-export const signupValidationSchema = z.object({
-	fullName: z.string().min(1, 'Full name is required'),
-	username: z.string().min(1, 'Username is required'),
-	email: z.string().min(1, 'Email is required'),
-	password: z.string().min(5, 'Password must be at least 5 characters long'),
+export const authSchema = z.object({
+	username: username,
+	bio: bio,
+	avatar: url,
+	background: url,
+	password: password,
 });
 
-export type SignupValidationType = z.infer<typeof signupValidationSchema>;
-
-export const ForgotPasswordValidationSchema = z.object({
-	email: z.string().min(1, 'Email is required'),
+export const loginSchema = authSchema.omit({
+	bio: true,
+	avatar: true,
+	background: true,
 });
 
-export type ForgotPasswordValidationType = z.infer<
-	typeof ForgotPasswordValidationSchema
->;
-
-export const ResetPasswordValidationSchema = z.object({
-	token: z.string().length(8, 'Token is invalid'),
-	password: z.string().min(5, 'Password must be at least 5 characters long'),
+export const updateSchema = z.object({
+	username: username.optional(),
+	bio: bio.optional(),
+	avatar: url.optional(),
+	background: url.optional(),
+	password: password.optional(),
 });
-
-export type ResetPasswordValidationType = z.infer<
-	typeof ResetPasswordValidationSchema
->;

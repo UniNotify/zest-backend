@@ -2,7 +2,7 @@ import { env } from './env';
 
 export const config = {
 	server: {
-		development: env.IS_PRODUCTION,
+		env: env.ENV,
 		port: env.SERVER_PORT,
 	},
 	database: {

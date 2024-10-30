@@ -1,5 +1,5 @@
-import { z } from 'zod';
 import { config as loadEnv } from 'dotenv';
+import { z } from 'zod';
 
 loadEnv();
 
@@ -13,10 +13,7 @@ enum LogLevel {
 }
 
 const envSchema = z.object({
-	IS_PRODUCTION: z.preprocess(
-		val => val === 'true' || val === true,
-		z.boolean().default(true),
-	),
+	ENV: z.enum(['production', 'development', 'testing']).default('production'),
 	SERVER_PORT: z.preprocess(val => Number(val), z.number().default(3000)),
 	DATABASE_URL: z.string().url(),
 	LOG_LEVEL: z.nativeEnum(LogLevel).default(LogLevel.INFO),
